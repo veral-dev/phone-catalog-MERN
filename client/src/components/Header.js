@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Header() {
@@ -8,9 +8,11 @@ export default function Header() {
         <h1>The phone list</h1>
       </Link>
       <div className="flex-between">
-        <Link className="link-btn" to="/cart">
-          Cart
-        </Link>
+        <ul>
+          <Link className="link-btn" to="/form">
+            New phone
+          </Link>
+        </ul>
       </div>
     </header>
   );
