@@ -1,5 +1,5 @@
 import React from 'react';
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 
 import Alert from '../../components/ui/Alert';
 import { AlertContext } from '../../context/Alert.context';
@@ -9,8 +9,8 @@ describe('Alert component', () => {
   test('renders correctly', async () => {
     expect(
       renderWithRouter(
-        <AlertContext.Provider value={{ setToastMsg: jest.fn(), toastMsg: '' }}>
-          <Alert message="Error message" />
+        <AlertContext.Provider value={{ setToastMsg: jest.fn(), toastMsg: '', setErrorMsg: jest.fn(), errorMsg: null }}>
+          <Alert message="Alert message" />
         </AlertContext.Provider>
       )
     ).toMatchSnapshot();
@@ -18,7 +18,7 @@ describe('Alert component', () => {
 
   test('When alert is an error', () => {
     renderWithRouter(
-      <AlertContext.Provider value={{ setToastMsg: jest.fn(), toastMsg: '' }}>
+      <AlertContext.Provider value={{ setErrorMsg: jest.fn(), errorMsg: '' }}>
         <Alert message="Error message" />
       </AlertContext.Provider>
     );

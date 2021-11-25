@@ -1,25 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Alert component renders correctly 1`] = `
+exports[`Button renders correctly 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div
-        class="sc-bdvvtL eqlNFM"
-        style="background-color: tomato;"
+      <button
+        class="sc-bdvvtL cNFnlX"
+        style="background-color: rgb(255, 255, 255);"
       >
-        Alert message
-      </div>
+        Button text
+      </button>
     </div>
   </body>,
   "container": <div>
-    <div
-      class="sc-bdvvtL eqlNFM"
-      style="background-color: tomato;"
+    <button
+      class="sc-bdvvtL cNFnlX"
+      style="background-color: rgb(255, 255, 255);"
     >
-      Alert message
-    </div>
+      Button text
+    </button>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],

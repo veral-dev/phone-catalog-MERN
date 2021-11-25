@@ -1,7 +1,7 @@
 import React from 'react';
 import './loading.css';
 
-export default function Spinner() {
+export default function Loading() {
   return (
     <div className="sk-circle">
       <div className="sk-circle1 sk-child"></div>

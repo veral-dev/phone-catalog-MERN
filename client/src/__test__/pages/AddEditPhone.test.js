@@ -2,14 +2,14 @@ import React from 'react';
 import { screen, fireEvent, waitFor } from '@testing-library/react';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
-import AddEditPhone from '../pages/AddEditPhone';
-import { CREATED_STATUS, ERROR_SERVER_STATUS } from './consts/httpStatus';
-import { renderWithRouter } from './utils';
-import { PhoneContext } from '../context/Phone.context';
-import { AlertContext } from '../context/Alert.context';
+import AddEditPhone from '../../pages/AddEditPhone';
+import { CREATED_STATUS, ERROR_SERVER_STATUS } from '../consts/httpStatus';
+import { renderWithRouter } from '../utils';
+import { PhoneContext } from '../../context/Phone.context';
+import { AlertContext } from '../../context/Alert.context';
 
 const server = setupServer(
-  rest.post('/products', (req, res, ctx) => {
+  rest.post('/phones', (req, res, ctx) => {
     const { name, manufacturer, description, price } = req.body;
 
     if (name && manufacturer && description && price) {
@@ -25,17 +25,16 @@ beforeAll(() => server.listen());
 // Disable API mocking after the tests are done.
 afterAll(() => server.close());
 
-beforeEach(() =>
-  renderWithRouter(
-    <PhoneContext.Provider value={{ createNewPhone: jest.fn() }}>
-      <AlertContext.Provider value={{ createNewPhone: jest.fn() }}>
-        <AddEditPhone />
-      </AlertContext.Provider>
-    </PhoneContext.Provider>
-  )
-);
-
 describe('when access to AddEditPhone page', () => {
+  beforeEach(() =>
+    renderWithRouter(
+      <PhoneContext.Provider value={{ createNewPhone: jest.fn() }}>
+        <AlertContext.Provider value={{ createNewPhone: jest.fn() }}>
+          <AddEditPhone />
+        </AlertContext.Provider>
+      </PhoneContext.Provider>
+    )
+  );
   test('there must be a create phone form page', () => {
     expect(screen.getByRole('heading')).toBeInTheDocument();
   });
@@ -76,6 +75,15 @@ describe('when access to AddEditPhone page', () => {
 });
 
 describe('when the user submits the form and the server returns an unexpected error', () => {
+  beforeEach(() =>
+    renderWithRouter(
+      <PhoneContext.Provider value={{ createNewPhone: jest.fn() }}>
+        <AlertContext.Provider value={{ createNewPhone: jest.fn() }}>
+          <AddEditPhone />
+        </AlertContext.Provider>
+      </PhoneContext.Provider>
+    )
+  );
   test('the form page must display the error message "Unexpected error, please try again', async () => {
     fireEvent.click(screen.getByRole('button', { name: /submit/i }));
 
@@ -84,6 +92,15 @@ describe('when the user submits the form and the server returns an unexpected er
 });
 
 describe('when the user try to upload images with fileuploader', () => {
+  beforeEach(() =>
+    renderWithRouter(
+      <PhoneContext.Provider value={{ createNewPhone: jest.fn() }}>
+        <AlertContext.Provider value={{ createNewPhone: jest.fn() }}>
+          <AddEditPhone />
+        </AlertContext.Provider>
+      </PhoneContext.Provider>
+    )
+  );
   test('test uploading', async () => {
     const imageInput = screen.getByLabelText(/upload preview image/i);
     expect(imageInput).toBeInTheDocument();

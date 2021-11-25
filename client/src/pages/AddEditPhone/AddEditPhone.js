@@ -26,7 +26,7 @@ export default function AddEditPhone() {
   const { setToastMsg } = useContext(AlertContext);
 
   const { id } = useParams();
-  const [editing, setEditing] = useState(false);
+  const [editing, setEditing] = useState(null);
 
   const [uploading, setUploading] = useState(false);
   const [image, setImage] = useState(null);
@@ -102,6 +102,8 @@ export default function AddEditPhone() {
     }
     setSubmitLoading(false);
   };
+
+  if (editing === null) return <></>;
 
   return (
     <FormContainer onSubmit={onSubmit}>
