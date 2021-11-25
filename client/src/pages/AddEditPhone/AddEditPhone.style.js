@@ -2,7 +2,14 @@ import styled from 'styled-components';
 
 const FormContainer = styled.form`
   width: 600px;
-  margin: auto;
+  margin: 0 auto 50px auto;
+`;
+
+const FormGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px;
+  grid-auto-rows: minmax(10px, auto);
 `;
 
 const ImageUploader = styled.label`
@@ -47,4 +54,4 @@ const SubmitButton = styled.button`
   margin-top: 1rem;
 `;
 
-export { FormContainer, ImageUploader, PhoneImage, SubmitButton };
+export { FormContainer, ImageUploader, PhoneImage, SubmitButton, FormGrid };

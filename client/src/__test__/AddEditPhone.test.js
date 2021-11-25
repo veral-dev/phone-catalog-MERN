@@ -1,9 +1,12 @@
 import React from 'react';
-import { screen, render, fireEvent, waitFor } from '@testing-library/react';
+import { screen, fireEvent, waitFor } from '@testing-library/react';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import AddEditPhone from '../pages/AddEditPhone';
 import { CREATED_STATUS, ERROR_SERVER_STATUS } from './consts/httpStatus';
+import { renderWithRouter } from './utils';
+import { PhoneContext } from '../context/Phone.context';
+import { AlertContext } from '../context/Alert.context';
 
 const server = setupServer(
   rest.post('/products', (req, res, ctx) => {
@@ -22,7 +25,15 @@ beforeAll(() => server.listen());
 // Disable API mocking after the tests are done.
 afterAll(() => server.close());
 
-beforeEach(() => render(<AddEditPhone />));
+beforeEach(() =>
+  renderWithRouter(
+    <PhoneContext.Provider value={{ createNewPhone: jest.fn() }}>
+      <AlertContext.Provider value={{ createNewPhone: jest.fn() }}>
+        <AddEditPhone />
+      </AlertContext.Provider>
+    </PhoneContext.Provider>
+  )
+);
 
 describe('when access to AddEditPhone page', () => {
   test('there must be a create phone form page', () => {
@@ -68,7 +79,7 @@ describe('when the user submits the form and the server returns an unexpected er
   test('the form page must display the error message "Unexpected error, please try again', async () => {
     fireEvent.click(screen.getByRole('button', { name: /submit/i }));
 
-    await waitFor(() => expect(screen.getByText(/all fields are required/i)).toBeInTheDocument());
+    await waitFor(() => expect(screen.getByText(/please, fill required fields/i)).toBeInTheDocument());
   });
 });
 

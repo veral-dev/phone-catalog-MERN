@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect, useContext } from 'react';
 import styled from 'styled-components';
+import { AlertContext } from '../../context/Alert.context';
 
 const AlertContainer = styled.div`
   width: 100%;
@@ -14,6 +15,19 @@ const AlertContainer = styled.div`
   margin-top: 1rem;
 `;
 
-export default function Alert({ message, bgColor }) {
-  return <AlertContainer style={{ backgroundColor: bgColor || 'tomato' }}>{message}</AlertContainer>;
+export default function Alert({ message, success }) {
+  const { toastMsg, setToastMsg, errorMsg, setErrorMsg } = useContext(AlertContext);
+
+  useEffect(() => {
+    const timeOut = setTimeout(() => {
+      setToastMsg(null);
+      setErrorMsg(null);
+    }, 3000);
+
+    return () => {
+      clearTimeout(timeOut);
+    };
+  }, [toastMsg, errorMsg]);
+
+  return <AlertContainer style={{ backgroundColor: success ? 'mediumseagreen' : 'tomato' }}>{message}</AlertContainer>;
 }

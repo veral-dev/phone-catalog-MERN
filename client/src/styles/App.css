@@ -1,19 +1,6 @@
 main {
-  width: 900px;
   margin: auto;
-}
-header {
-  margin: 10px 50px;
-}
-header h1 {
-  text-transform: uppercase;
-  font-size: 2.5rem;
-  font-weight: 900;
-}
-
-header a {
-  text-decoration: none;
-  color: inherit;
+  max-width: 1200px;
 }
 
 .flex-between {

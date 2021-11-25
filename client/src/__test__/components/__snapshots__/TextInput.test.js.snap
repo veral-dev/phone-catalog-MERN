@@ -11,7 +11,7 @@ Object {
             Test-textinput
           </span>
           <input
-            class="sc-bdvvtL JcWJc"
+            class="sc-bdvvtL hBpBeN"
             name="test-textinput"
             type="text"
             value="testinput"
@@ -27,7 +27,7 @@ Object {
           Test-textinput
         </span>
         <input
-          class="sc-bdvvtL JcWJc"
+          class="sc-bdvvtL hBpBeN"
           name="test-textinput"
           type="text"
           value="testinput"

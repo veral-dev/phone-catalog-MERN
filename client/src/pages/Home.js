@@ -11,7 +11,6 @@ export default function Home() {
 
   return (
     <div>
-      <h1>Home</h1>
       <Grid>{!!phoneData && phoneData.map((phone, idx) => <Card key={idx} phone={phone} />)}</Grid>
     </div>
   );

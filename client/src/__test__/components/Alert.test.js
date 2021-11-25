@@ -1,20 +1,38 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 
 import Alert from '../../components/ui/Alert';
+import { AlertContext } from '../../context/Alert.context';
+import { renderWithRouter } from '../utils';
 
 describe('Alert component', () => {
   test('renders correctly', async () => {
-    expect(render(<Alert message="Error message" />)).toMatchSnapshot();
+    expect(
+      renderWithRouter(
+        <AlertContext.Provider value={{ setToastMsg: jest.fn(), toastMsg: '' }}>
+          <Alert message="Error message" />
+        </AlertContext.Provider>
+      )
+    ).toMatchSnapshot();
   });
 
   test('When alert is an error', () => {
-    render(<Alert message="Error message" />);
+    renderWithRouter(
+      <AlertContext.Provider value={{ setToastMsg: jest.fn(), toastMsg: '' }}>
+        <Alert message="Error message" />
+      </AlertContext.Provider>
+    );
     expect(screen.getByText(/error message/i)).toBeInTheDocument();
+    expect(screen.getByText(/error message/i)).toHaveStyle(`background-color: tomato;`);
   });
   test('When alert with prop background color', () => {
-    render(<Alert message="Information message" bgColor="green" />);
+    renderWithRouter(
+      <AlertContext.Provider value={{ setToastMsg: jest.fn(), toastMsg: '' }}>
+        <Alert message="Information message" success />
+      </AlertContext.Provider>
+    );
+
     expect(screen.getByText(/information message/i)).toBeInTheDocument();
-    expect(screen.getByText(/information message/i)).toHaveStyle(`background-color: green;`);
+    expect(screen.getByText(/information message/i)).toHaveStyle(`background-color: mediumseagreen;`);
   });
 });
