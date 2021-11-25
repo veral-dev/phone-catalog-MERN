@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "node .",
-    "dev": "nodemon ."
+    "dev": "nodemon .",
+    "lint": "eslint ./",
+    "lint:fix": "eslint ./ --fix",
+    "prettier": "prettier ./ --write"
   },
   "author": "David Veral",
   "license": "ISC",
@@ -16,6 +19,12 @@
     "express": "4.17.1",
     "express-validator": "6.4.0",
     "mongoose": "6.0.13",
-    "nodemon": "2.0.2"
+    "nodemon": "^2.0.15"
+  },
+  "devDependencies": {
+    "eslint": "^8.3.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.5.0"
   }
 }
