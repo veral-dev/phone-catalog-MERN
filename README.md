@@ -12,6 +12,8 @@ git clone https://github.com/veral-dev/phone-catalog-MERN.git
 
 - Go to server folder
 
+- Create a .env file with the data that I send by email.
+
 - [Install NodeJS](https://nodejs.org/en/) on your computer.
 
 - [Install npm](https://docs.npmjs.com/getting-started) on your computer
