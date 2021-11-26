@@ -1,8 +1,5 @@
 import React from 'react';
-import { screen, fireEvent, waitFor } from '@testing-library/react';
-import { rest } from 'msw';
-import { setupServer } from 'msw/node';
-import { OK_STATUS } from '../consts/httpStatus';
+import { screen } from '@testing-library/react';
 import { renderWithRouter } from '../utils';
 import { PhoneContext } from '../../context/Phone.context';
 import Home from '../../pages/Home';
@@ -30,7 +27,10 @@ beforeEach(() =>
   )
 );
 
-describe('when access to Home page', () => {
+describe('Home page', () => {
+  test('should rendering home page', () => {
+    expect(screen.getByText(/discover the best phones here/i)).toBeInTheDocument();
+  });
   test('there must be a phone card if the list have information', () => {
     expect(screen.getByText('iPhone 7')).toBeInTheDocument();
     expect(screen.getByRole('img')).toBeInTheDocument();
