@@ -13,9 +13,6 @@ const DetailsContainer = styled.div`
   margin: 0 20px 150px 20px;
   display: flex;
   flex-direction: column;
-  @media (min-width: 768px) {
-    max-width: 900px;
-  }
 `;
 
 const DetailsFlex = styled.div`

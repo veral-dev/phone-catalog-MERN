@@ -25,16 +25,17 @@ beforeAll(() => server.listen());
 // Disable API mocking after the tests are done.
 afterAll(() => server.close());
 
+beforeEach(() =>
+  renderWithRouter(
+    <PhoneContext.Provider value={{ createNewPhone: jest.fn() }}>
+      <AlertContext.Provider value={{ setToastMsg: jest.fn() }}>
+        <AddEditPhone />
+      </AlertContext.Provider>
+    </PhoneContext.Provider>
+  )
+);
+
 describe('when access to AddEditPhone page', () => {
-  beforeEach(() =>
-    renderWithRouter(
-      <PhoneContext.Provider value={{ createNewPhone: jest.fn() }}>
-        <AlertContext.Provider value={{ createNewPhone: jest.fn() }}>
-          <AddEditPhone />
-        </AlertContext.Provider>
-      </PhoneContext.Provider>
-    )
-  );
   test('there must be a create phone form page', () => {
     expect(screen.getByRole('heading')).toBeInTheDocument();
   });
@@ -75,15 +76,6 @@ describe('when access to AddEditPhone page', () => {
 });
 
 describe('when the user submits the form and the server returns an unexpected error', () => {
-  beforeEach(() =>
-    renderWithRouter(
-      <PhoneContext.Provider value={{ createNewPhone: jest.fn() }}>
-        <AlertContext.Provider value={{ createNewPhone: jest.fn() }}>
-          <AddEditPhone />
-        </AlertContext.Provider>
-      </PhoneContext.Provider>
-    )
-  );
   test('the form page must display the error message "Unexpected error, please try again', async () => {
     fireEvent.click(screen.getByRole('button', { name: /submit/i }));
 
@@ -92,15 +84,6 @@ describe('when the user submits the form and the server returns an unexpected er
 });
 
 describe('when the user try to upload images with fileuploader', () => {
-  beforeEach(() =>
-    renderWithRouter(
-      <PhoneContext.Provider value={{ createNewPhone: jest.fn() }}>
-        <AlertContext.Provider value={{ createNewPhone: jest.fn() }}>
-          <AddEditPhone />
-        </AlertContext.Provider>
-      </PhoneContext.Provider>
-    )
-  );
   test('test uploading', async () => {
     const imageInput = screen.getByLabelText(/upload preview image/i);
     expect(imageInput).toBeInTheDocument();
