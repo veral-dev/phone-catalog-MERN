@@ -3,26 +3,22 @@ import { screen, fireEvent, waitFor } from '@testing-library/react';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import AddEditPhone from '../../pages/AddEditPhone';
-import { CREATED_STATUS, ERROR_SERVER_STATUS } from '../consts/httpStatus';
+import { OK_STATUS } from '../consts/httpStatus';
 import { renderWithRouter } from '../utils';
 import { PhoneContext } from '../../context/Phone.context';
 import { AlertContext } from '../../context/Alert.context';
+import { fakeResponse } from '../consts/helper';
 
 const server = setupServer(
-  rest.post('/phones', (req, res, ctx) => {
-    const { name, manufacturer, description, price } = req.body;
-
-    if (name && manufacturer && description && price) {
-      return res(ctx.status(CREATED_STATUS));
-    }
-    return res(ctx.status(ERROR_SERVER_STATUS));
+  rest.get(`/phones/detail/5`, (req, res, ctx) => {
+    res(ctx.status(OK_STATUS), ctx.json(fakeResponse));
   })
 );
 
-// Enable API mocking before tests.
 beforeAll(() => server.listen());
 
-// Disable API mocking after the tests are done.
+afterEach(() => server.resetHandlers());
+
 afterAll(() => server.close());
 
 beforeEach(() =>
@@ -40,7 +36,7 @@ describe('when access to AddEditPhone page', () => {
     expect(screen.getByRole('heading')).toBeInTheDocument();
   });
 
-  test('should exists the fields: name', () => {
+  test('should exists the fields', () => {
     expect(screen.getByLabelText(/name/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/manufacturer/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/description/i)).toBeInTheDocument();

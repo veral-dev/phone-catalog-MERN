@@ -3,21 +3,9 @@ import { screen } from '@testing-library/react';
 import { renderWithRouter } from '../utils';
 import { PhoneContext } from '../../context/Phone.context';
 import Home from '../../pages/Home';
+import { fakeResponse } from '../consts/helper';
 
-const fakeData = [
-  {
-    id: 0,
-    name: 'iPhone 7',
-    manufacturer: 'Apple',
-    description: 'lorem ipsum dolor sit amet consectetur.',
-    color: 'black',
-    price: 769,
-    imageFileName: 'IPhone_7.png',
-    screen: '4,7 inch IPS',
-    processor: 'A10 Fusion',
-    ram: 2
-  }
-];
+const fakeData = [fakeResponse];
 
 beforeEach(() =>
   renderWithRouter(

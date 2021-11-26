@@ -4,25 +4,13 @@ import { render, fireEvent, screen } from '@testing-library/react';
 import Card from '../../components/ui/Card';
 import { createMemoryHistory } from 'history';
 import { Router } from 'react-router-dom';
-
-const fakeData = {
-  id: 0,
-  name: 'iPhone 7',
-  manufacturer: 'Apple',
-  description: 'lorem ipsum dolor sit amet consectetur.',
-  color: 'black',
-  price: 769,
-  imageFileName: 'IPhone_7.png',
-  screen: '4,7 inch IPS',
-  processor: 'A10 Fusion',
-  ram: 2
-};
+import { fakeResponse } from '../consts/helper';
 
 beforeEach(() => {
   const history = createMemoryHistory();
   render(
     <Router history={history}>
-      <Card phone={fakeData}>Card text</Card>
+      <Card phone={fakeResponse}>Card text</Card>
     </Router>
   );
 });
