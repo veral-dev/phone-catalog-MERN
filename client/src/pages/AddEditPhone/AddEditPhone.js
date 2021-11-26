@@ -114,7 +114,7 @@ export default function AddEditPhone() {
         <TextInput name="description" label="Description*" type="text" value={values.description} onChange={handleChange} />
         <TextInput name="screen" label="Screen*" type="text" value={values.screen} onChange={handleChange} />
         <TextInput name="processor" label="Processor*" type="text" value={values.processor} onChange={handleChange} />
-        <TextInput name="ram" label="Ram*" type="text" value={values.ram} onChange={handleChange} />
+        <TextInput name="ram" label="Ram*" type="number" value={values.ram} onChange={handleChange} />
         <TextInput name="color" label="Color*" type="text" value={values.color} onChange={handleChange} />
         <TextInput name="price" label="Price*" type="number" value={values.price} onChange={handleChange} />
       </FormGrid>
