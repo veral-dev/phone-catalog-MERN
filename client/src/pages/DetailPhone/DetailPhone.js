@@ -45,14 +45,12 @@ export default function DetailPhone() {
 
   return (
     <DetailsContainer>
-      <h1>{phone.name}</h1>
       <DetailsFlex>
         <div>{phone.image && <PhoneImage src={phone.image} alt={phone.name} />}</div>
 
         <div>
-          <Price>
-            <strong>{phone.price} €</strong>
-          </Price>
+          <h1>{phone.name}</h1>
+
           <p>{phone.description}</p>
           <div className="flex-between">
             <strong>Manufacturer: </strong>
@@ -74,6 +72,9 @@ export default function DetailPhone() {
             <strong>Ram: </strong>
             <span>{phone.ram}</span>
           </div>
+          <Price>
+            <strong>{phone.price} €</strong>
+          </Price>
         </div>
       </DetailsFlex>
       <ButtonContainer>

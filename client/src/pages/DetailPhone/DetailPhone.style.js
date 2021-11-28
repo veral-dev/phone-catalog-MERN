@@ -10,7 +10,7 @@ const PhoneImage = styled.img`
   }
 `;
 const DetailsContainer = styled.div`
-  margin: 0 20px 150px 20px;
+  margin: 20px 20px 150px 20px;
   display: flex;
   flex-direction: column;
 `;

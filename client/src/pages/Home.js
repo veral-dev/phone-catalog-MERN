@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <div>
       <h1 style={{ textAlign: 'center' }}>Discover the best phones here</h1>
-      <Grid>{!!phoneData && phoneData.map((phone, idx) => <Card key={idx} phone={phone} />)}</Grid>
+      <Grid>{!!phoneData && phoneData.map((phone, idx) => <Card key={idx} phone={{ ...phone, idx }} />)}</Grid>
     </div>
   );
 }
