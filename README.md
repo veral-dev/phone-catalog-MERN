@@ -46,3 +46,6 @@ Runs test that control the app
 ## Learn More about React
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+## Project deployed here
+[https://zen-kowalevski-96b547.netlify.app/](https://zen-kowalevski-96b547.netlify.app/) to view it in the browser.
